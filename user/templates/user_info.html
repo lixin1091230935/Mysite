@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    个人资料
+{% endblock %}
+
+{% block content %}
+    <div class="containter">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-2">
+
+                <h3>
+                    {{ user.username }}   &nbsp;  个人资料
+                </h3>
+                <hr>
+                <ul>
+                     <li>昵称：{{ user.get_nickname }}<a href=
+                               "{% url 'change_nickname' %}?from={{ request.get_full_path }}">&nbsp;&nbsp;修改昵称</a>
+                     &nbsp;&nbsp;&nbsp;&nbsp;上次登陆时间:{{ user.last_login|date:"Y-m-d H:i:s" }}</li>
+                </ul>
+            <ul>
+                    <li>邮箱:
+                        {% if user.email %}
+                            {{ user.email }}
+                        {% else %}
+                            <a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">绑定邮箱</a>
+                        {% endif %}
+                    </li>
+            </ul>
+            <ul>
+                <li>
+                关注:
+                <a href="#">10</a>
+                </li>
+            </ul>
+            <ul>
+                <li>粉丝:
+                    <a href="#">20</a></li>
+            </ul>
+            <ul><li>生日:1996-08-23</li></ul>
+            <ul><li>地区:地球</li></ul>
+            <ul><li>行业:</li></ul>
+            <ul><li>职业:</li></ul>
+            <ul><li>简介:</li></ul>
+            <ul><li><a href="{% url 'change_password' %}">修改密码</a></li></ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
